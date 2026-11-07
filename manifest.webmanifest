@@ -1,0 +1,29 @@
+{
+  "id": "./",
+  "name": "Maxim Thailand. ЦУП",
+  "short_name": "ЦУП",
+  "description": "Центр управления поездками — дашборды и инструменты Maxim Thailand",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Статистика подразделений", "url": "./?open=1", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Анализ тарифов", "url": "./?open=2", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Изменения в клиентской базе", "url": "./?open=3", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Риск оттока водителей", "url": "./?open=4", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Мотивационная программа для водителей", "url": "./?open=5", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Управление мотивационной программой", "url": "./?open=6", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Программа легализации водителей", "url": "./?open=7", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

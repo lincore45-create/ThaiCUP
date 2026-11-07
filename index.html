@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maxim Thailand. ЦУП</title>
+<meta name="description" content="Центр управления поездками — дашборды и инструменты Maxim Thailand">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/favicon-64.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ЦУП">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F6F9; --bg2:#FFFFFF; --card:#FFFFFF; --card-h:#FFFFFF;
+    --line:#E4E8EE; --line-h:#D3D9E2;
+    --text:#151A23; --muted:#5E6878; --dim:#97A0AE;
+    --red:#E1271D; --red-h:#C81F16; --red-soft:rgba(225,39,29,.08);
+    --c-an:#2F6FE0; --c-dr:#E1271D; --c-rg:#1E9E5A;
+    --r:16px;
+    --shadow:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.06);
+    --shadow-h:0 10px 24px -6px rgba(16,24,40,.12),0 2px 6px rgba(16,24,40,.06);
+    --sans:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{
+    min-height:100vh;
+    padding:calc(env(safe-area-inset-top) + 28px) calc(env(safe-area-inset-right) + 20px) calc(env(safe-area-inset-bottom) + 28px) calc(env(safe-area-inset-left) + 20px);
+  }
+  .wrap{max-width:1120px;margin:0 auto}
+
+  /* Шапка */
+  header{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+    background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);
+    padding:20px 24px;margin-bottom:28px;position:relative;overflow:hidden}
+  header::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--red)}
+  .brand{display:flex;gap:18px;align-items:center}
+  .logo{width:56px;height:56px;flex:none;object-fit:contain}
+  h1{font-weight:800;font-size:clamp(24px,4vw,34px);line-height:1.1;letter-spacing:-.02em}
+  h1 .dot{color:var(--red)}
+  h1 .cup{color:var(--red)}
+  .sub{color:var(--muted);font-size:15px;margin-top:6px;font-weight:500}
+
+  .ops{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .clock{font-family:var(--mono);text-align:right;line-height:1.3}
+  .clock .t{font-size:24px;font-weight:500;letter-spacing:.02em}
+  .clock .d{font-size:12px;color:var(--muted);letter-spacing:.04em}
+  .live{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--c-rg);margin-right:6px;vertical-align:middle;
+    animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(30,158,90,.45)}70%{box-shadow:0 0 0 7px rgba(30,158,90,0)}100%{box-shadow:0 0 0 0 rgba(30,158,90,0)}}
+
+  .btn{font-family:var(--sans);font-weight:700;font-size:14px;border-radius:12px;padding:11px 16px;cursor:pointer;
+    border:1px solid var(--line-h);background:var(--card);color:var(--text);display:inline-flex;gap:8px;align-items:center;
+    transition:background .15s,border-color .15s,transform .1s}
+  .btn:hover{background:#F7F8FA;border-color:#C3CAD5}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:var(--red);color:#fff;border-color:var(--red)}
+  .btn.primary:hover{background:var(--red-h);border-color:var(--red-h)}
+  .btn svg{width:16px;height:16px}
+  [hidden]{display:none!important}
+
+  /* Разделы */
+  section{margin-bottom:30px}
+  .sec-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .sec-h h2{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .sec-h .bar{flex:1;height:1px;background:var(--line)}
+  .sec-h .tag{width:8px;height:8px;border-radius:50%}
+
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+
+  a.card{position:relative;display:flex;flex-direction:column;gap:14px;min-height:172px;padding:18px 18px 16px;
+    border-radius:var(--r);background:var(--card);border:1px solid var(--line);color:inherit;text-decoration:none;overflow:hidden;
+    box-shadow:var(--shadow);transition:box-shadow .18s,border-color .18s,transform .18s}
+  a.card::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--acc);opacity:0;transition:opacity .18s}
+  a.card:hover,a.card:focus-visible{border-color:var(--line-h);box-shadow:var(--shadow-h);transform:translateY(-2px);outline:none}
+  a.card:hover::after,a.card:focus-visible::after{opacity:1}
+  a.card:focus-visible{box-shadow:0 0 0 2px var(--acc),var(--shadow-h)}
+  .row{display:flex;justify-content:space-between;align-items:flex-start}
+  .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+    background:color-mix(in srgb, var(--acc) 10%, white);color:var(--acc)}
+  .ico svg{width:22px;height:22px}
+  .num{font-family:var(--mono);font-size:12px;color:var(--dim)}
+  kbd{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line-h);border-bottom-width:2px;
+    border-radius:5px;padding:1px 6px;background:#fff}
+  .card h3{font-size:17px;font-weight:700;line-height:1.3;letter-spacing:-.01em}
+  .card p{font-size:13.5px;color:var(--muted);line-height:1.45;margin-top:4px}
+  .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--line)}
+  .url{font-family:var(--mono);font-size:12px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .go{color:var(--dim);transition:transform .18s,color .18s;flex:none}
+  .go svg{width:18px;height:18px;display:block}
+  a.card:hover .go{transform:translate(2px,-2px);color:var(--acc)}
+
+  footer{margin-top:10px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    color:var(--dim);font-size:12.5px}
+  .hint-kbd{display:inline-flex;gap:6px;align-items:center}
+
+  /* Панель установки */
+  .sheet-bg{position:fixed;inset:0;background:rgba(21,26,35,.35);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:10;
+    display:grid;place-items:center;padding:20px}
+  .sheet{width:min(560px,100%);background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;max-height:90vh;overflow:auto;
+    box-shadow:0 24px 48px -12px rgba(16,24,40,.25)}
+  .sheet h3{font-size:20px;font-weight:800;margin-bottom:6px}
+  .sheet > p{color:var(--muted);font-size:14px;margin-bottom:16px;line-height:1.5}
+  .plat{border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+  .plat b{display:block;font-size:14px;margin-bottom:6px}
+  .plat ol{padding-left:18px;color:var(--muted);font-size:13.5px;line-height:1.6}
+  .plat.me{border-color:var(--red);background:var(--red-soft)}
+  .sheet .close{margin-top:8px;width:100%;justify-content:center}
+
+  @media (max-width:640px){
+    body{padding-top:calc(env(safe-area-inset-top) + 14px)}
+    header{padding:18px}
+    .ops{width:100%;justify-content:space-between}
+    .clock{text-align:left}
+    .logo{width:46px;height:46px}
+    a.card{min-height:0}
+    .hint-kbd{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <img class="logo" src="icons/maxim-logo.png" alt="Maxim" width="56" height="56">
+      <div>
+                <h1>Maxim Thailand<span class="dot">.</span> <span class="cup">ЦУП</span></h1>
+        <div class="sub">Центр управления поездками</div>
+      </div>
+    </div>
+    <div class="ops">
+      <div class="clock" aria-live="off">
+        <div class="t" id="time">--:--</div>
+        <div class="d"><span class="live"></span><span id="date">Бангкок</span></div>
+      </div>
+      <button class="btn primary" id="installBtn" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Установить
+      </button>
+      <button class="btn" id="howBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg>
+        <span id="howLabel">Установить на устройство</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="app"></main>
+
+  <footer>
+    <span>Maxim Thailand · ЦУП</span>
+    <span class="hint-kbd">Быстрый переход: клавиши <kbd>1</kbd>–<kbd>7</kbd></span>
+  </footer>
+</div>
+
+<div class="sheet-bg" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet">
+    <h3 id="sheetTitle">Установить ЦУП как приложение</h3>
+    <p>После установки ЦУП открывается с иконки на рабочем столе или домашнем экране, в отдельном окне без адресной строки.</p>
+    <div class="plat" data-p="desktop"><b>Компьютер — Chrome / Edge</b>
+      <ol><li>Нажмите значок установки в правой части адресной строки (монитор со стрелкой) или кнопку «Установить» выше.</li>
+      <li>Подтвердите «Установить». Приложение появится в меню «Пуск» / Launchpad, его можно закрепить на панели задач.</li></ol></div>
+    <div class="plat" data-p="android"><b>Android — Chrome</b>
+      <ol><li>Нажмите кнопку «Установить» выше или меню <b style="display:inline">⋮</b> → «Установить приложение» / «Добавить на главный экран».</li>
+      <li>Подтвердите — иконка ЦУП появится на домашнем экране.</li></ol></div>
+    <div class="plat" data-p="ios"><b>iPhone / iPad — Safari</b>
+      <ol><li>Нажмите «Поделиться» (квадрат со стрелкой вверх).</li>
+      <li>Выберите «На экран „Домой“» → «Добавить».</li></ol></div>
+    <button class="btn close" id="closeSheet">Понятно</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ===== Инструменты. Чтобы добавить новый — допишите объект в TOOLS. ===== */
+  var GROUPS = [
+    {id:'an', title:'Аналитика', color:'var(--c-an)'},
+    {id:'dr', title:'Водители и мотивация', color:'var(--c-dr)'},
+    {id:'rg', title:'Регуляторика', color:'var(--c-rg)'}
+  ];
+  var ICONS = {
+    org:'<rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="17" y="3" width="4" height="17" rx="1"/>',
+    tag:'<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="8" cy="8" r="1.6"/>',
+    users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7"/><path d="M18 14.8c2 .7 3.2 2.5 3.6 5.2"/>',
+    risk:'<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4.5"/><circle cx="12" cy="17.3" r=".6" fill="currentColor"/>',
+    trophy:'<path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 6h3v1.5A3.5 3.5 0 0 1 16.6 11M7 6H4v1.5A3.5 3.5 0 0 0 7.4 11"/>',
+    sliders:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',
+    shield:'<path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/>'
+  };
+  var TOOLS = [
+    {n:1, g:'an', icon:'org',     title:'Статистика подразделений',              desc:'Показатели и прогресс подразделений по городам', url:'https://taxs.ee/SubdivisionsProgress'},
+    {n:2, g:'an', icon:'tag',     title:'Анализ тарифов',                        desc:'Сравнение цен с конкурентами',                   url:'https://taxs.ee/CompetitorsPrices'},
+    {n:3, g:'an', icon:'users',   title:'Изменения в клиентской базе',           desc:'Динамика клиентской базы',                       url:'https://taxs.ee/ThaiClientsProject'},
+    {n:4, g:'an', icon:'risk',    title:'Риск оттока водителей',                 desc:'Водители в зоне риска ухода',                    url:'https://taxs.ee/ThaiDriversProject'},
+    {n:5, g:'dr', icon:'trophy',  title:'Мотивационная программа для водителей', desc:'Rewards Center — интерфейс для водителей',       url:'https://taxs.ee/RewardsCenter'},
+    {n:6, g:'dr', icon:'sliders', title:'Управление мотивационной программой',   desc:'Админ-панель программы',                         url:'https://taxs.ee/ThaiAdmin'},
+    {n:7, g:'rg', icon:'shield',  title:'Программа легализации водителей',       desc:'Заявки водителей на PDL',                        url:'https://taxs.ee/PDLrequests'}
+  ];
+
+  // Ярлыки приложения (правый клик по иконке / долгое нажатие): ?open=N
+  try{
+    var q = new URLSearchParams(location.search).get('open');
+    var hit = q && TOOLS.filter(function(t){return String(t.n)===q;})[0];
+    if(hit){ location.replace(hit.url); return; }
+  }catch(e){}
+
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  var arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
+
+  var html = GROUPS.map(function(g){
+    var items = TOOLS.filter(function(t){return t.g===g.id;});
+    if(!items.length) return '';
+    return '<section><div class="sec-h"><span class="tag" style="background:'+g.color+'"></span><h2>'+esc(g.title)+'</h2><span class="bar"></span></div><div class="grid">'+
+      items.map(function(t){
+        var short = t.url.replace(/^https?:\/\//,'');
+        return '<a class="card" style="--acc:'+g.color+'" href="'+esc(t.url)+'" target="_blank" rel="noopener" data-n="'+t.n+'">'+
+          '<div class="row"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+ICONS[t.icon]+'</svg></div>'+
+          '<span class="num">'+String(t.n).padStart(2,'0')+'</span></div>'+
+          '<div><h3>'+esc(t.title)+'</h3><p>'+esc(t.desc)+'</p></div>'+
+          '<div class="foot"><span class="url">'+esc(short)+'</span><span class="go">'+arrow+'</span></div></a>';
+      }).join('')+'</div></section>';
+  }).join('');
+  document.getElementById('app').innerHTML = html;
+
+  // Клавиши 1–7
+  document.addEventListener('keydown', function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey) return;
+    if(!document.getElementById('sheet').hidden){ if(e.key==='Escape') closeSheet(); return; }
+    var el = document.querySelector('a.card[data-n="'+e.key+'"]');
+    if(el){ el.focus(); el.click(); }
+  });
+
+  // Часы — время Бангкока
+  var tf = new Intl.DateTimeFormat('ru-RU',{timeZone:'Asia/Bangkok',hour:'2-digit',minute:'2-digit'});
+  var df = new Intl.DateTimeFormat('ru-RU',{timeZone:'Asia/Bangkok',weekday:'short',day:'numeric',month:'long'});
+  function tick(){
+    var now = new Date();
+    document.getElementById('time').textContent = tf.format(now);
+    document.getElementById('date').textContent = df.format(now)+' · Бангкок';
+  }
+  tick(); setInterval(tick, 10000);
+
+  // ===== Установка (PWA) =====
+  var isStandalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  var ua = navigator.userAgent || '';
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+  var isAndroid = /Android/i.test(ua);
+  var plat = isIOS ? 'ios' : isAndroid ? 'android' : 'desktop';
+
+  var installBtn = document.getElementById('installBtn');
+  var howBtn = document.getElementById('howBtn');
+  var sheet = document.getElementById('sheet');
+  var deferred = null;
+
+  if(isStandalone){ howBtn.hidden = true; }
+
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault(); deferred = e;
+    installBtn.hidden = false;
+    document.getElementById('howLabel').textContent = 'Как установить';
+  });
+  installBtn.addEventListener('click', function(){
+    if(!deferred){ openSheet(); return; }
+    deferred.prompt();
+    deferred.userChoice.finally(function(){ deferred = null; installBtn.hidden = true; });
+  });
+  window.addEventListener('appinstalled', function(){ installBtn.hidden = true; howBtn.hidden = true; });
+
+  function openSheet(){
+    var ps = sheet.querySelectorAll('.plat');
+    for(var i=0;i<ps.length;i++){ ps[i].classList.toggle('me', ps[i].getAttribute('data-p')===plat); }
+    sheet.hidden = false;
+  }
+  function closeSheet(){ sheet.hidden = true; }
+  howBtn.addEventListener('click', openSheet);
+  document.getElementById('closeSheet').addEventListener('click', closeSheet);
+  sheet.addEventListener('click', function(e){ if(e.target===sheet) closeSheet(); });
+
+  if('serviceWorker' in navigator){
+    try{
+      navigator.serviceWorker.register('sw.js').catch(function(){ /* недоступно в предпросмотре — это нормально */ });
+    }catch(e){}
+  }
+})();
+</script>
+</body>
+</html>
