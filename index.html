@@ -22,7 +22,7 @@
     --line:#E4E8EE; --line-h:#D3D9E2;
     --text:#151A23; --muted:#5E6878; --dim:#97A0AE;
     --red:#E1271D; --red-h:#C81F16; --red-soft:rgba(225,39,29,.08);
-    --c-an:#2F6FE0; --c-dr:#E1271D; --c-rg:#1E9E5A;
+    --c-an:#2F6FE0; --c-dr:#E1271D; --c-rg:#1E9E5A; --c-mn:#7A4FD8;
     --r:16px;
     --shadow:0 1px 2px rgba(16,24,40,.04),0 1px 3px rgba(16,24,40,.06);
     --shadow-h:0 10px 24px -6px rgba(16,24,40,.12),0 2px 6px rgba(16,24,40,.06);
@@ -157,7 +157,7 @@
 
   <footer>
     <span>Maxim Thailand · ЦУП</span>
-    <span class="hint-kbd">Быстрый переход: клавиши <kbd>1</kbd>–<kbd>7</kbd></span>
+    <span class="hint-kbd">Быстрый переход: клавиши <kbd>1</kbd>–<kbd>9</kbd></span>
   </footer>
 </div>
 
@@ -186,7 +186,8 @@
   var GROUPS = [
     {id:'an', title:'Аналитика', color:'var(--c-an)'},
     {id:'dr', title:'Водители и мотивация', color:'var(--c-dr)'},
-    {id:'rg', title:'Регуляторика', color:'var(--c-rg)'}
+    {id:'rg', title:'Регуляторика', color:'var(--c-rg)'},
+    {id:'mn', title:'Мониторинг в реальном времени', color:'var(--c-mn)'}
   ];
   var ICONS = {
     org:'<rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="17" y="3" width="4" height="17" rx="1"/>',
@@ -195,6 +196,8 @@
     risk:'<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4.5"/><circle cx="12" cy="17.3" r=".6" fill="currentColor"/>',
     trophy:'<path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 6h3v1.5A3.5 3.5 0 0 1 16.6 11M7 6H4v1.5A3.5 3.5 0 0 0 7.4 11"/>',
     sliders:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',
+    pulse:'<path d="M3 12h4l2.5-6 5 12 2.5-6h4"/>',
+    map:'<path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/>',
     shield:'<path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/>'
   };
   var TOOLS = [
@@ -204,7 +207,9 @@
     {n:4, g:'an', icon:'risk',    title:'Риск оттока водителей',                 desc:'Водители в зоне риска ухода',                    url:'https://taxs.ee/ThaiDriversProject'},
     {n:5, g:'dr', icon:'trophy',  title:'Мотивационная программа для водителей', desc:'Rewards Center — интерфейс для водителей',       url:'https://taxs.ee/RewardsCenter'},
     {n:6, g:'dr', icon:'sliders', title:'Управление мотивационной программой',   desc:'Админ-панель программы',                         url:'https://taxs.ee/ThaiAdmin'},
-    {n:7, g:'rg', icon:'shield',  title:'Программа легализации водителей',       desc:'Заявки водителей на PDL',                        url:'https://taxs.ee/PDLrequests'}
+    {n:7, g:'rg', icon:'shield',  title:'Программа легализации водителей',       desc:'Заявки водителей на PDL',                        url:'https://taxs.ee/PDLrequests'},
+    {n:8, g:'mn', icon:'map',     title:'City monitor',                          desc:'Статистика заказов в работе',                    url:'https://citymonitor-sea.taxsee.com'},
+    {n:9, g:'mn', icon:'pulse',   title:'Такси Мониторинг',                      desc:'Графики подразделений в реальном времени',       url:'https://monitoring.taxsee.com'}
   ];
 
   // Ярлыки приложения (правый клик по иконке / долгое нажатие): ?open=N

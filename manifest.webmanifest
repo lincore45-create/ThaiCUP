@@ -24,6 +24,8 @@
     { "name": "Риск оттока водителей", "url": "./?open=4", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "Мотивационная программа для водителей", "url": "./?open=5", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "Управление мотивационной программой", "url": "./?open=6", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
-    { "name": "Программа легализации водителей", "url": "./?open=7", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+    { "name": "Программа легализации водителей", "url": "./?open=7", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "City monitor", "url": "./?open=8", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Такси Мониторинг", "url": "./?open=9", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
   ]
 }
